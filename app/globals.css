@@ -1,38 +1,44 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
+/* =======================
+   THEME VARIABLES & COLORS
+   ======================= */
 @theme {
   /* Custom Colors */
-  --color-primary-500: #FF7000;
-  --color-primary-100: #FFF1E6;
-  
+  --color-primary-500: #ff7000;
+  --color-primary-100: #fff1e6;
+
   --color-dark-100: #000000;
-  --color-dark-200: #0F1117;
+  --color-dark-200: #0f1117;
   --color-dark-300: #151821;
   --color-dark-400: #212734;
   --color-dark-500: #101012;
-  
-  --color-light-900: #FFFFFF;
-  --color-light-800: #F4F6F8;
-  --color-light-850: #FDFDFD;
-  --color-light-700: #DCE3F1;
-  --color-light-500: #7B8EC8;
-  --color-light-400: #858EAD;
-  
-  --color-accent-blue: #1DA1F2;
+
+  --color-light-900: #ffffff;
+  --color-light-850: #fdfdfd;
+  --color-light-800: #f4f6f8;
+  --color-light-700: #dce3f1;
+  --color-light-500: #7b8ec8;
+  --color-light-400: #858ead;
+
+  --color-accent-blue: #1da1f2;
 
   /* Font Families */
-  --font-family-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-family-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-family-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-family-space-grotesk: "Space Grotesk", ui-sans-serif, system-ui,
+    sans-serif;
 
-  /* Custom Shadows */
-  --shadow-light-100: 0px 12px 20px 0px rgba(184, 184, 184, 0.03), 0px 6px 12px 0px rgba(184, 184, 184, 0.02), 0px 2px 4px 0px rgba(184, 184, 184, 0.03);
-  --shadow-light-200: 10px 10px 20px 0px rgba(218, 213, 213, 0.10);
-  --shadow-light-300: -10px 10px 20px 0px rgba(218, 213, 213, 0.10);
-  --shadow-dark-100: 0px 2px 10px 0px rgba(46, 52, 56, 0.10);
+  /* Shadows */
+  --shadow-light-100: 0px 12px 20px 0px rgba(184, 184, 184, 0.03),
+    0px 6px 12px 0px rgba(184, 184, 184, 0.02),
+    0px 2px 4px 0px rgba(184, 184, 184, 0.03);
+  --shadow-light-200: 10px 10px 20px 0px rgba(218, 213, 213, 0.1);
+  --shadow-light-300: -10px 10px 20px 0px rgba(218, 213, 213, 0.1);
+  --shadow-dark-100: 0px 2px 10px 0px rgba(46, 52, 56, 0.1);
   --shadow-dark-200: 2px 0px 20px 0px rgba(39, 36, 36, 0.04);
 
-  /* Custom Screens */
+  /* Screens */
   --breakpoint-xs: 420px;
   --breakpoint-2xl: 1400px;
 
@@ -45,22 +51,34 @@
 
   /* Keyframes */
   @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
-
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
-
   @keyframes shimmer {
-    from { background-position: 0 0; }
-    to { background-position: -200% 0; }
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
   }
 }
 
-/* Dark Mode Configuration */
+/* =======================
+   DARK MODE
+   ======================= */
 @media (prefers-color-scheme: dark) {
   @theme {
     --color-background: var(--color-dark-200);
@@ -68,449 +86,395 @@
   }
 }
 
-/* Custom Utility Classes */
+/* =======================
+   BASE
+   ======================= */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: var(--font-family-inter);
+    background-color: var(--color-light-900);
+    color: var(--color-dark-400);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-dark-200);
+      color: var(--color-light-900);
+    }
+    &.dark {
+      background-color: var(--color-dark-200);
+      color: var(--color-light-900);
+    }
+  }
+}
+
+/* =======================
+   UTILITIES
+   ======================= */
 @layer utilities {
-  /* Background utilities */
+  /* === Backgrounds === */
   .background-light850_dark100 {
     background-color: var(--color-light-850);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-100);
     }
-    
     &.dark {
       background-color: var(--color-dark-100);
     }
   }
-  
   .background-light900_dark200 {
     background-color: var(--color-light-900);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-200);
     }
-    
     &.dark {
       background-color: var(--color-dark-200);
     }
   }
-  
   .background-light900_dark300 {
     background-color: var(--color-light-900);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300);
     }
-    
     &.dark {
       background-color: var(--color-dark-300);
     }
   }
-  
   .background-light800_darkgradient {
     background-color: var(--color-light-800);
-    
     @media (prefers-color-scheme: dark) {
-      background: linear-gradient(232deg, rgba(23, 28, 35, 0.41) 0%, rgba(19, 22, 28, 0.7) 100%);
+      background: linear-gradient(
+        232deg,
+        rgba(23, 28, 35, 0.41) 0%,
+        rgba(19, 22, 28, 0.7) 100%
+      );
     }
-    
     &.dark {
-      background: linear-gradient(232deg, rgba(23, 28, 35, 0.41) 0%, rgba(19, 22, 28, 0.7) 100%);
+      background: linear-gradient(
+        232deg,
+        rgba(23, 28, 35, 0.41) 0%,
+        rgba(19, 22, 28, 0.7) 100%
+      );
     }
   }
-  
   .background-light800_dark400 {
     background-color: var(--color-light-800) !important;
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-400) !important;
     }
-    
     &.dark {
       background-color: var(--color-dark-400) !important;
     }
   }
-  
   .background-light700_dark400 {
     background-color: var(--color-light-700);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-400);
     }
-    
     &.dark {
       background-color: var(--color-dark-400);
     }
   }
-  
   .background-light700_dark300 {
     background-color: var(--color-light-700);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300);
     }
-    
     &.dark {
       background-color: var(--color-dark-300);
     }
   }
-  
   .background-light800_dark300 {
     background-color: var(--color-light-800) !important;
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300) !important;
     }
-    
     &.dark {
       background-color: var(--color-dark-300) !important;
     }
   }
 
-  /* Text utilities */
+  /* === Text === */
   .text-dark100_light900 {
     color: var(--color-dark-100) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-900) !important;
     }
-    
     &.dark {
       color: var(--color-light-900) !important;
     }
   }
-  
   .text-dark200_light900 {
     color: var(--color-dark-200);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-900);
     }
-    
     &.dark {
       color: var(--color-light-900);
     }
   }
-  
   .text-dark200_light800 {
     color: var(--color-dark-200) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-800) !important;
     }
-    
     &.dark {
       color: var(--color-light-800) !important;
     }
   }
-  
   .text-dark300_light700 {
     color: var(--color-dark-300);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-700);
     }
-    
     &.dark {
       color: var(--color-light-700);
     }
   }
-  
   .text-dark400_light700 {
     color: var(--color-dark-400);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-700);
     }
-    
     &.dark {
       color: var(--color-light-700);
     }
   }
-  
   .text-dark500_light700 {
     color: var(--color-dark-500) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-700) !important;
     }
-    
     &.dark {
       color: var(--color-light-700) !important;
     }
   }
-  
   .text-dark500_light500 {
     color: var(--color-dark-500);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-500);
     }
-    
     &.dark {
       color: var(--color-light-500);
     }
   }
-  
   .text-dark300_light900 {
     color: var(--color-dark-300) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-900) !important;
     }
-    
     &.dark {
       color: var(--color-light-900) !important;
     }
   }
-  
   .text-dark400_light800 {
     color: var(--color-dark-400);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-800);
     }
-    
     &.dark {
       color: var(--color-light-800);
     }
   }
-  
   .text-light400_light500 {
     color: var(--color-light-400) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-500) !important;
     }
-    
     &.dark {
       color: var(--color-light-500) !important;
     }
   }
-  
   .text-dark400_light500 {
     color: var(--color-dark-400);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-500);
     }
-    
     &.dark {
       color: var(--color-light-500);
     }
   }
-  
   .text-dark400_light900 {
     color: var(--color-dark-400) !important;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-900) !important;
     }
-    
     &.dark {
       color: var(--color-light-900) !important;
     }
   }
 
-  /* Border utilities */
+  /* === Borders === */
   .light-border {
     border-color: var(--color-light-800);
-    
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-dark-300);
     }
-    
     &.dark {
       border-color: var(--color-dark-300);
     }
   }
-  
   .light-border-2 {
     border-color: var(--color-light-700) !important;
-    
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-dark-400) !important;
     }
-    
     &.dark {
       border-color: var(--color-dark-400) !important;
     }
   }
 
-  /* Typography utilities */
+  /* === Typography === */
   .h1-bold {
     font-size: 30px;
     font-weight: 700;
     line-height: 42px;
     letter-spacing: -0.025em;
   }
-  
   .h2-bold {
     font-size: 24px;
     font-weight: 700;
     line-height: 31.2px;
   }
-  
   .h2-semibold {
     font-size: 24px;
     font-weight: 600;
     line-height: 31.2px;
   }
-  
   .h3-bold {
     font-size: 20px;
     font-weight: 700;
     line-height: 26px;
   }
-  
   .h3-semibold {
     font-size: 20px;
     font-weight: 600;
     line-height: 24.8px;
   }
-  
   .base-medium {
     font-size: 18px;
     font-weight: 500;
     line-height: 25.2px;
   }
-  
   .base-semibold {
     font-size: 18px;
     font-weight: 600;
     line-height: 25.2px;
   }
-  
   .base-bold {
     font-size: 18px;
     font-weight: 700;
     line-height: 140%;
   }
-  
   .paragraph-regular {
     font-size: 16px;
     font-weight: 400;
     line-height: 22.4px;
   }
-  
   .paragraph-medium {
     font-size: 16px;
     font-weight: 500;
     line-height: 22.4px;
   }
-  
   .paragraph-semibold {
     font-size: 16px;
     font-weight: 600;
     line-height: 20.8px;
   }
-  
   .body-regular {
     font-size: 14px;
     font-weight: 400;
     line-height: 19.6px;
   }
-  
   .body-medium {
     font-size: 14px;
     font-weight: 500;
     line-height: 18.2px;
   }
-  
   .body-semibold {
     font-size: 14px;
     font-weight: 600;
     line-height: 18.2px;
   }
-  
   .small-regular {
     font-size: 12px;
     font-weight: 400;
     line-height: 15.6px;
   }
-  
   .small-medium {
     font-size: 12px;
     font-weight: 500;
     line-height: 15.6px;
   }
-  
   .small-semibold {
     font-size: 12px;
     font-weight: 600;
     line-height: 15.6px;
   }
-  
   .subtle-medium {
     font-size: 10px !important;
     font-weight: 500 !important;
     line-height: 13px !important;
   }
-  
   .subtle-regular {
     font-size: 10px;
     font-weight: 400;
     line-height: 13px;
   }
 
-  /* Utility classes */
+  /* === Utility Classes === */
   .placeholder {
     &::placeholder {
       color: var(--color-light-400);
     }
-    
     @media (prefers-color-scheme: dark) {
       &::placeholder {
         color: var(--color-light-500);
       }
     }
-    
     &.dark::placeholder {
       color: var(--color-light-500);
     }
   }
-  
   .invert-colors {
     filter: invert(1);
-    
     @media (prefers-color-scheme: dark) {
       filter: invert(0);
     }
-    
     &.dark {
       filter: invert(0);
     }
   }
-  
   .shadow-light100_dark100 {
     box-shadow: var(--shadow-light-100);
-    
     @media (prefers-color-scheme: dark) {
       box-shadow: var(--shadow-dark-100);
     }
-    
     &.dark {
       box-shadow: var(--shadow-dark-100);
     }
   }
-  
   .shadow-light100_darknone {
     box-shadow: var(--shadow-light-100);
-    
     @media (prefers-color-scheme: dark) {
       box-shadow: none;
     }
-    
     &.dark {
       box-shadow: none;
     }
   }
 
-  /* Gradient utilities */
+  /* === Gradients === */
   .primary-gradient {
-    background: linear-gradient(129deg, var(--color-primary-500) 0%, #e2995f 100%);
+    background: linear-gradient(
+      129deg,
+      var(--color-primary-500) 0%,
+      #e2995f 100%
+    );
   }
-  
   .dark-gradient {
     background: linear-gradient(
       232deg,
@@ -518,7 +482,6 @@
       rgba(19, 22, 28, 0.7) 100%
     );
   }
-  
   .light-gradient {
     background: linear-gradient(
       132deg,
@@ -526,53 +489,57 @@
       rgba(229, 237, 255, 0.25) 100%
     );
   }
-  
   .primary-text-gradient {
-    background: linear-gradient(129deg, var(--color-primary-500) 0%, #e2995f 100%);
+    background: linear-gradient(
+      129deg,
+      var(--color-primary-500) 0%,
+      #e2995f 100%
+    );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-}
 
-@layer utilities {
-  /* Flexbox utilities */
+  /* === Flexbox Utilities === */
   .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
   .flex-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
   .flex-start {
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
 
-  /* Component utilities */
+  /* === Component Utilities === */
   .card-wrapper {
     background-color: var(--color-light-900);
     box-shadow: var(--shadow-light-100);
     border-radius: 8px;
     padding: 24px;
-    
     @media (prefers-color-scheme: dark) {
-      background: linear-gradient(232deg, rgba(23, 28, 35, 0.41) 0%, rgba(19, 22, 28, 0.7) 100%);
+      background: linear-gradient(
+        232deg,
+        rgba(23, 28, 35, 0.41) 0%,
+        rgba(19, 22, 28, 0.7) 100%
+      );
       box-shadow: var(--shadow-dark-100);
     }
-    
     &.dark {
-      background: linear-gradient(232deg, rgba(23, 28, 35, 0.41) 0%, rgba(19, 22, 28, 0.7) 100%);
+      background: linear-gradient(
+        232deg,
+        rgba(23, 28, 35, 0.41) 0%,
+        rgba(19, 22, 28, 0.7) 100%
+      );
       box-shadow: var(--shadow-dark-100);
     }
   }
-  
   .btn {
     background-color: var(--color-light-800) !important;
     color: var(--color-dark-400) !important;
@@ -582,32 +549,26 @@
     font-weight: 500 !important;
     transition: all 0.2s ease !important;
     cursor: pointer !important;
-    
     &:hover {
       background-color: var(--color-light-700) !important;
     }
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-400) !important;
-      
       &:hover {
         background-color: var(--color-dark-200) !important;
       }
     }
-    
     &.dark {
       background-color: var(--color-dark-300) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-400) !important;
-      
       &:hover {
         background-color: var(--color-dark-200) !important;
       }
     }
   }
-  
   .btn-secondary {
     background-color: var(--color-light-800) !important;
     color: var(--color-dark-400) !important;
@@ -617,32 +578,26 @@
     font-weight: 500 !important;
     transition: all 0.2s ease !important;
     cursor: pointer !important;
-    
     &:hover {
       background-color: var(--color-light-700) !important;
     }
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-400) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-300) !important;
-      
       &:hover {
         background-color: var(--color-dark-300) !important;
       }
     }
-    
     &.dark {
       background-color: var(--color-dark-400) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-300) !important;
-      
       &:hover {
         background-color: var(--color-dark-300) !important;
       }
     }
   }
-  
   .btn-tertiary {
     background-color: var(--color-light-700) !important;
     color: var(--color-dark-400) !important;
@@ -652,45 +607,36 @@
     font-weight: 500 !important;
     transition: all 0.2s ease !important;
     cursor: pointer !important;
-    
     &:hover {
       background-color: var(--color-light-500) !important;
     }
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-200) !important;
-      
       &:hover {
         background-color: var(--color-dark-200) !important;
       }
     }
-    
     &.dark {
       background-color: var(--color-dark-300) !important;
       color: var(--color-light-900) !important;
       border-color: var(--color-dark-200) !important;
-      
       &:hover {
         background-color: var(--color-dark-200) !important;
       }
     }
   }
-  
   .markdown {
     max-width: 100%;
     line-height: 1.6;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-700);
     }
-    
     &.dark {
       color: var(--color-light-700);
     }
   }
-  
   .tab {
     min-height: 100%;
     background-color: var(--color-light-800);
@@ -698,68 +644,53 @@
     padding: 12px;
     border-radius: 6px;
     transition: all 0.2s ease;
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-400);
       color: var(--color-light-400);
     }
-    
     &.dark {
       background-color: var(--color-dark-400);
       color: var(--color-light-400);
     }
   }
-  
   .no-focus {
     outline: none;
-    
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
-    
+    &:focus,
     &:focus-visible {
       outline: none;
       box-shadow: none;
     }
   }
-  
   .active-theme {
-    filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg) 
-    brightness(104%) contrast(106%) !important;
+    filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
+      brightness(104%) contrast(106%) !important;
   }
 
-  /* Scrollbar utilities */
+  /* === Scrollbars === */
   .custom-scrollbar::-webkit-scrollbar {
     width: 3px;
     height: 3px;
     border-radius: 2px;
   }
-  
   .custom-scrollbar::-webkit-scrollbar-track {
     background: #ffffff;
   }
-  
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 50px;
   }
-  
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-  
-  /* Hide scrollbar utilities */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  
-  /* Hash anchor utility */
+
+  /* === Hash anchor === */
   .hash-span {
     margin-top: -140px;
     padding-bottom: 140px;
@@ -767,47 +698,21 @@
   }
 }
 
-
-@layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: var(--font-family-inter);
-    background-color: var(--color-light-900);
-    color: var(--color-dark-400);
-    
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-dark-200);
-      color: var(--color-light-900);
-    }
-    
-    &.dark {
-      background-color: var(--color-dark-200);
-      color: var(--color-light-900);
-    }
-  }
-}
-
-
+/* =======================
+   COMPONENTS
+   ======================= */
 @layer components {
-  /* Markdown styles */
+  /* === Markdown === */
   .markdown a {
     color: var(--color-accent-blue);
     text-decoration: underline;
     text-underline-offset: 2px;
-    
     &:hover {
       text-decoration: underline;
     }
   }
-  
   .markdown a,
   .markdown code {
-    /* Word breaking for long URLs and code */
     overflow-wrap: break-word;
     word-wrap: break-word;
     -ms-word-break: break-all;
@@ -818,24 +723,20 @@
     -webkit-hyphens: auto;
     hyphens: auto;
   }
-  
   .markdown code {
     padding: 2px 4px;
     border-radius: 4px;
     color: var(--color-primary-500) !important;
     background-color: var(--color-light-800);
     font-size: 14px;
-    font-family: 'Courier New', monospace;
-    
+    font-family: "Courier New", monospace;
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300);
     }
-    
     &.dark {
       background-color: var(--color-dark-300);
     }
   }
-  
   .markdown pre {
     display: grid;
     width: 100%;
@@ -844,16 +745,13 @@
     background-color: var(--color-light-850);
     padding: 16px;
     margin: 16px 0;
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-400);
     }
-    
     &.dark {
       background-color: var(--color-dark-400);
     }
   }
-  
   .markdown pre code {
     width: 100%;
     display: block;
@@ -862,22 +760,18 @@
     padding: 0 !important;
     color: inherit !important;
   }
-  
   .markdown blockquote {
     border-left: 4px solid var(--color-primary-500);
     padding-left: 16px;
     font-style: italic;
     color: var(--color-dark-400);
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-700);
     }
-    
     &.dark {
       color: var(--color-light-700);
     }
   }
-  
   .markdown h1,
   .markdown h2,
   .markdown h3,
@@ -888,166 +782,146 @@
     color: var(--color-dark-100);
     margin-top: 24px;
     margin-bottom: 12px;
-    
     @media (prefers-color-scheme: dark) {
       color: var(--color-light-900);
     }
-    
     &.dark {
       color: var(--color-light-900);
     }
   }
-  
   .markdown ul,
   .markdown ol {
     margin: 16px 0;
     padding-left: 24px;
   }
-  
   .markdown li {
     margin-bottom: 8px;
   }
-  
   .markdown table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid var(--color-light-700);
     margin: 16px 0;
-    
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-dark-400);
     }
-    
     &.dark {
       border-color: var(--color-dark-400);
     }
   }
-  
   .markdown th,
   .markdown td {
     border: 1px solid var(--color-light-700);
     padding: 12px;
     text-align: left;
-    
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-dark-400);
     }
-    
     &.dark {
       border-color: var(--color-dark-400);
     }
   }
-  
   .markdown th {
     background-color: var(--color-light-800);
     font-weight: 600;
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300);
     }
-    
     &.dark {
       background-color: var(--color-dark-300);
     }
   }
 }
 
-/* Clerk authentication styles */
+/* =======================
+   CLERK AUTHENTICATION
+   ======================= */
 .cl-internal-b3fm6y {
-  background: linear-gradient(129deg, var(--color-primary-500) 0%, #e2995f 100%) !important;
+  background: linear-gradient(
+    129deg,
+    var(--color-primary-500) 0%,
+    #e2995f 100%
+  ) !important;
 }
-
 .cl-formButtonPrimary {
-  background: linear-gradient(129deg, var(--color-primary-500) 0%, #e2995f 100%);
+  background: linear-gradient(
+    129deg,
+    var(--color-primary-500) 0%,
+    #e2995f 100%
+  );
   transition: opacity 0.2s ease;
-  
   &:hover {
     opacity: 0.9;
   }
 }
-
 .cl-card {
   background-color: var(--color-light-900);
   border: 1px solid var(--color-light-700);
-  
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-dark-200);
     border-color: var(--color-dark-400);
   }
-  
   &.dark {
     background-color: var(--color-dark-200);
     border-color: var(--color-dark-400);
   }
 }
-
 .cl-headerTitle,
 .cl-headerSubtitle {
   color: var(--color-dark-100);
-  
   @media (prefers-color-scheme: dark) {
     color: var(--color-light-900);
   }
-  
   &.dark {
     color: var(--color-light-900);
   }
 }
-
 .cl-formFieldInput {
   background-color: var(--color-light-800);
   border: 1px solid var(--color-light-700);
   color: var(--color-dark-400);
-  
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-dark-300);
     border-color: var(--color-dark-400);
     color: var(--color-light-900);
   }
-  
   &.dark {
     background-color: var(--color-dark-300);
     border-color: var(--color-dark-400);
     color: var(--color-light-900);
   }
 }
-
 .cl-formFieldLabel {
   color: var(--color-dark-400);
-  
   @media (prefers-color-scheme: dark) {
     color: var(--color-light-700);
   }
-  
   &.dark {
     color: var(--color-light-700);
   }
 }
-
 .cl-footerActionLink {
   color: var(--color-primary-500);
-  
   &:hover {
     opacity: 0.8;
   }
 }
 
-/* Additional component styles */
+/* =======================
+   ADDITIONAL COMPONENTS
+   ======================= */
 .shimmer {
   position: relative;
   overflow: hidden;
   background-color: var(--color-light-800);
-  
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-dark-300);
   }
-  
   &.dark {
     background-color: var(--color-dark-300);
   }
-  
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
@@ -1060,24 +934,20 @@
     animation: shimmer 2s infinite;
   }
 }
-
-/* Loading states */
 .loading-skeleton {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   background-color: var(--color-light-800);
   border-radius: 4px;
-  
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-dark-300);
   }
-  
   &.dark {
     background-color: var(--color-dark-300);
   }
 }
-
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -1085,7 +955,9 @@
   }
 }
 
-/* Form styles */
+/* =======================
+   FORMS
+   ======================= */
 .form-field {
   width: 100%;
   padding: 8px 12px;
@@ -1094,73 +966,67 @@
   background-color: var(--color-light-900);
   color: var(--color-dark-400);
   transition: all 0.2s ease;
-  
   &::placeholder {
     color: var(--color-light-400);
   }
-  
   &:focus {
     outline: none;
     border-color: var(--color-primary-500);
     box-shadow: 0 0 0 2px rgba(255, 112, 0, 0.1);
   }
-  
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-dark-300);
     border-color: var(--color-dark-400);
     color: var(--color-light-900);
-    
     &::placeholder {
       color: var(--color-light-500);
     }
-    
     &:focus {
       border-color: var(--color-primary-500);
       box-shadow: 0 0 0 2px rgba(255, 112, 0, 0.1);
     }
   }
-  
   &.dark {
     background-color: var(--color-dark-300);
     border-color: var(--color-dark-400);
     color: var(--color-light-900);
-    
     &::placeholder {
       color: var(--color-light-500);
     }
-    
     &:focus {
       border-color: var(--color-primary-500);
       box-shadow: 0 0 0 2px rgba(255, 112, 0, 0.1);
     }
   }
 }
-
 .form-label {
   display: block;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-dark-400);
   margin-bottom: 8px;
-  
   @media (prefers-color-scheme: dark) {
     color: var(--color-light-700);
   }
-  
   &.dark {
     color: var(--color-light-700);
   }
 }
-
 .form-error {
   color: #ef4444;
   font-size: 12px;
   margin-top: 4px;
 }
 
-/* Button variants */
+/* =======================
+   BUTTONS
+   ======================= */
 .btn-primary {
-  background: linear-gradient(129deg, var(--color-primary-500) 0%, #e2995f 100%);
+  background: linear-gradient(
+    129deg,
+    var(--color-primary-500) 0%,
+    #e2995f 100%
+  );
   color: white;
   font-weight: 600;
   padding: 8px 16px;
@@ -1168,17 +1034,14 @@
   border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  
   &:hover {
     opacity: 0.9;
   }
-  
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(255, 112, 0, 0.5);
   }
 }
-
 .btn-outline {
   border: 1px solid var(--color-primary-500);
   color: var(--color-primary-500);
@@ -1187,18 +1050,15 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
-  
   &:hover {
     background-color: var(--color-primary-500);
     color: white;
   }
-  
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(255, 112, 0, 0.3);
   }
 }
-
 .btn-ghost {
   color: var(--color-dark-400);
   background: transparent;
@@ -1207,35 +1067,27 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  
   &:hover {
     background-color: var(--color-light-800);
   }
-  
   @media (prefers-color-scheme: dark) {
     color: var(--color-light-700);
-    
     &:hover {
       background-color: var(--color-dark-300);
     }
   }
-  
   &.dark {
     color: var(--color-light-700);
-    
     &:hover {
       background-color: var(--color-dark-300);
     }
   }
-  
   &:focus {
     outline: none;
     background-color: var(--color-light-700);
-    
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-dark-300);
     }
-    
     &.dark {
       background-color: var(--color-dark-300);
     }
