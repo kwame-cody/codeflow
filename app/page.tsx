@@ -1,8 +1,8 @@
-
+import { UserButton } from "@clerk/nextjs";
 export default function Home() {
   return (
-    <div>
-      Try testing one, two
+    <div className="">
+      <UserButton afterSwitchSessionUrl="/" />
     </div>
   );
 }
